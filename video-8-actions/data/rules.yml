@@ -11,3 +11,18 @@ rules:
   steps:
   - intent: bot_challenge
   - action: utter_iamabot
+
+- rule: Tell the time
+  steps:
+  - intent: inquire_time
+  - action: action_tell_time
+
+- rule: Where I live intent
+  steps:
+  - intent: where_i_live
+  - action: action_remember_where
+
+- rule: Time Difference Intent
+  steps:
+  - intent: inquire_time_difference
+  - action: action_time_difference

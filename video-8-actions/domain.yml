@@ -3,7 +3,9 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
+- where_i_live
 - greet
+- inquire_time_difference
 - inquire_time
 - goodbye
 - affirm
@@ -13,6 +15,10 @@ intents:
 - bot_challenge
 entities:
 - place
+slots:
+  location:
+    type: text
+    influence_conversation: true
 responses:
   utter_greet:
   - text: Hey! How are you?
@@ -28,5 +34,7 @@ responses:
   utter_iamabot:
   - text: I am a bot, powered by Rasa.
 actions:
+- action_remember_where
 - action_tell_time
+- action_time_difference
 - utter_greet
