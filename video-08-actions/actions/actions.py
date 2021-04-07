@@ -98,7 +98,6 @@ class ActionTimeDifference(Action):
             dispatcher.utter_message(text=msg)
             return []
         
-        utc = arrow.utcnow()
         t1 = arrow.utcnow().to(city_db[timezone_to])
         t2 = arrow.utcnow().to(city_db[timezone_in])
         max_t, min_t = max(t1, t2), min(t1, t2)

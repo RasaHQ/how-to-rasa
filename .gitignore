@@ -131,3 +131,4 @@ dmypy.json
 .vscode 
 */story_graph.dot
 *.ipynb
+.idea
