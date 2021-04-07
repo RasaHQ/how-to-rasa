@@ -1,34 +1,80 @@
-version: "2.0"
-
-intents:
-  - greet
-  - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
-
-responses:
-  utter_greet:
-  - text: "Hey! How are you?"
-
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
-
-  utter_did_that_help:
-  - text: "Did that help you?"
-
-  utter_happy:
-  - text: "Great, carry on!"
-
-  utter_goodbye:
-  - text: "Bye"
-
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
-
+version: '2.0'
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+intents:
+- inform
+- buy_pizza
+- greet
+- goodbye
+- affirm
+- deny
+- mood_great
+- mood_unhappy
+- bot_challenge
+- request_fancy_form
+- request_pizza_form
+- buy_fancy_pizza
+entities:
+- pizza_size
+- pizza_type
+- vegetarian
+slots:
+  price_confirmed:
+    type: bool
+    influence_conversation: true
+  pizza_size:
+    type: text
+    influence_conversation: true
+  pizza_type:
+    type: text
+    influence_conversation: true
+  vegetarian:
+    type: bool
+    influence_conversation: true
+responses:
+  utter_greet:
+  - text: Hey! How are you?
+  utter_cheer_up:
+  - text: 'Here is something to cheer you up:'
+    image: https://i.imgur.com/nGF1K8f.jpg
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_submit:
+  - text: I will now order a pizza for you!
+  utter_pizza_slots:
+  - text: I will order a {pizza_size} {pizza_type} pizza.
+  utter_ask_pizza_type:
+  - text: What kind of pizza would you like?
+  utter_ask_pizza_size:
+  - text: What size of pizza would you like?
+actions:
+- utter_goodbye
+- utter_greet
+- utter_pizza_slots
+- utter_submit
+- validate_fancy_pizza_form
+- validate_simple_pizza_form
+forms:
+  simple_pizza_form:
+    pizza_size:
+    - type: from_entity
+      entity: pizza_size
+    pizza_type:
+    - type: from_entity
+      entity: pizza_type
+  fancy_pizza_form:
+    vegetarian:
+    - type: from_text
+    pizza_size:
+    - type: from_entity
+      entity: pizza_size
+    pizza_type:
+    - type: from_entity
+      entity: pizza_type
