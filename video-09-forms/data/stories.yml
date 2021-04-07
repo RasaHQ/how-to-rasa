@@ -67,3 +67,32 @@ stories:
   - action: utter_pizza_slots
   - intent: goodbye
   - action: utter_goodbye
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: buy_fancy_pizza
+  - action: fancy_pizza_form
+  - active_loop: fancy_pizza_form
+  - slot_was_set:
+    - requested_slot: vegetarian
+  - slot_was_set:
+    - vegetarian: true
+  - slot_was_set:
+    - requested_slot: pizza_size
+  - slot_was_set:
+    - pizza_size: s
+  - slot_was_set:
+    - pizza_size: s
+  - slot_was_set:
+    - requested_slot: pizza_type
+  - slot_was_set:
+    - pizza_type: veggie
+  - slot_was_set:
+    - pizza_type: veggie
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_pizza_slots

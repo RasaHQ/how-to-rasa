@@ -3,18 +3,18 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
+- greet
+- affirm
+- buy_fancy_pizza
 - inform
 - buy_pizza
-- greet
 - goodbye
-- affirm
 - deny
 - mood_great
 - mood_unhappy
 - bot_challenge
 - request_fancy_form
 - request_pizza_form
-- buy_fancy_pizza
 entities:
 - pizza_size
 - pizza_type
@@ -55,6 +55,8 @@ responses:
   utter_ask_pizza_size:
   - text: What size of pizza would you like?
 actions:
+- action_ask_pizza_type
+- action_ask_vegetarian
 - utter_goodbye
 - utter_greet
 - utter_pizza_slots

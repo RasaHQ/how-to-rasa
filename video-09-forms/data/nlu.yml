@@ -16,6 +16,7 @@ nlu:
     - goodevening
     - good afternoon
     - yo
+    - hello world
 - intent: goodbye
   examples: |
     - cu
@@ -97,6 +98,7 @@ nlu:
     - i want a fancy pizza
     - can i buy a fancy pizza
     - I'm interested in a fancy flattened bread of Italian origin
+    - buy a fancy pizza
 - intent: inform
   examples: |
     - i'd like a [large](pizza_size) pizza
@@ -111,4 +113,5 @@ nlu:
     - i want a [large](pizza_size) pizza
     - [hawaiii](pizza_type)
     - [hawai](pizza_type)
-    - [hawaii](pizza_type)
+    - [s](pizza_size)
+    - [veggie](pizza_type)
