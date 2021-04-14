@@ -1,4 +1,5 @@
 version: "2.0"
+
 nlu:
 - intent: greet
   examples: |
@@ -15,10 +16,10 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
-    - yo
-    - hello world
+
 - intent: goodbye
   examples: |
+    - good afternoon
     - cu
     - good by
     - cee you later
@@ -29,7 +30,7 @@ nlu:
     - see you around
     - bye bye
     - see you later
-    - thanks, goodbye
+
 - intent: affirm
   examples: |
     - yes
@@ -38,6 +39,7 @@ nlu:
     - of course
     - that sounds good
     - correct
+
 - intent: deny
   examples: |
     - no
@@ -47,6 +49,7 @@ nlu:
     - don't like that
     - no way
     - not really
+
 - intent: mood_great
   examples: |
     - perfect
@@ -63,6 +66,7 @@ nlu:
     - so so perfect
     - so good
     - so perfect
+
 - intent: mood_unhappy
   examples: |
     - my day was horrible
@@ -79,40 +83,10 @@ nlu:
     - extremly sad
     - so saad
     - so sad
+
 - intent: bot_challenge
   examples: |
     - are you a bot?
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
-- intent: buy_pizza
-  examples: |
-    - i'd like to buy a pizza
-    - i want a pizza
-    - can i buy a pizza
-    - I'm interested in a savory round flattened bread of Italian origin
-    - i want to buy a pizza
-- intent: buy_fancy_pizza
-  examples: |
-    - i'd like to buy a fancy pizza
-    - i want a fancy pizza
-    - can i buy a fancy pizza
-    - I'm interested in a fancy flattened bread of Italian origin
-    - buy a fancy pizza
-- intent: inform
-  examples: |
-    - i'd like a [large](pizza_size) pizza
-    - [medium](pizza_size) pizza
-    - [xl](pizza_size)
-    - [small](pizza_size)
-    - [s](pizza_size)
-    - give me a [mozerella](pizza_type) pizza
-    - [hawaii](pizza_type) pizza
-    - [smol](pizza_size)
-    - [hawaii](pizza_type)
-    - i want a [large](pizza_size) pizza
-    - [mozzarella](pizza_type)
-    - [hawai](pizza_type)
-    - [s](pizza_size)
-    - [veggie](pizza_type)
-    - [fungi](pizza_type)

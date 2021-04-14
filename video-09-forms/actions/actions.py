@@ -23,7 +23,7 @@ class ValidateSimplePizzaForm(FormValidationAction):
     ) -> Dict[Text, Any]:
         """Validate `pizza_size` value."""
 
-        if slot_value not in ALLOWED_PIZZA_SIZES:
+        if slot_value.lower() not in ALLOWED_PIZZA_SIZES:
             dispatcher.utter_message(text=f"We only accept pizza sizes: s/m/l/xl.")
             return {"pizza_size": None}
         dispatcher.utter_message(text=f"OK! You want to have a {slot_value} pizza.")
@@ -67,6 +67,7 @@ class AskForPizzaTypeAction(Action):
     def run(
         self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict
     ) -> List[EventType]:
+        print(f"asking for pizza type. this is vega: {tracker.get_slot('vegetarian')}")
         if tracker.get_slot("vegetarian"):
             dispatcher.utter_message(text=f"What kind of pizza do you want?",
                                      buttons=[{"name": p, "payload": p} for p in VEGETARIAN_PIZZAS])
@@ -121,6 +122,9 @@ class ValidateFancyPizzaForm(FormValidationAction):
         """Validate `pizza_type` value."""
 
         if slot_value not in ALLOWED_PIZZA_TYPES:
+            dispatcher.utter_message(text=f"I don't recognize that pizza. We serve {'/'.join(ALLOWED_PIZZA_TYPES)}.")
+            return {"pizza_type": None}
+        if not slot_value:
             dispatcher.utter_message(text=f"I don't recognize that pizza. We serve {'/'.join(ALLOWED_PIZZA_TYPES)}.")
             return {"pizza_type": None}
         dispatcher.utter_message(text=f"OK! You want to have a {slot_value} pizza.")
