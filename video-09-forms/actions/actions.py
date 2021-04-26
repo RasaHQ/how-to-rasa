@@ -67,7 +67,6 @@ class AskForPizzaTypeAction(Action):
     def run(
         self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict
     ) -> List[EventType]:
-        print(f"asking for pizza type. this is vega: {tracker.get_slot('vegetarian')}")
         if tracker.get_slot("vegetarian"):
             dispatcher.utter_message(text=f"What kind of pizza do you want?",
                                      buttons=[{"name": p, "payload": p} for p in VEGETARIAN_PIZZAS])

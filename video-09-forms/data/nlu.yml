@@ -85,13 +85,6 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
-- intent: buy_pizza
-  examples: |
-    - i'd like to buy a pizza
-    - i want a pizza
-    - can i buy a pizza
-    - I'm interested in a savory round flattened bread of Italian origin
-    - i want to buy a pizza
 - intent: buy_fancy_pizza
   examples: |
     - i'd like to buy a fancy pizza
@@ -99,9 +92,17 @@ nlu:
     - can i buy a fancy pizza
     - I'm interested in a fancy flattened bread of Italian origin
     - buy a fancy pizza
+- intent: buy_pizza
+  examples: |
+    - i'd like to buy a pizza
+    - i want a pizza
+    - can i buy a pizza
+    - I'm interested in a savory round flattened bread of Italian origin
+    - i want to buy a pizza
 - intent: inform
   examples: |
     - i'd like a [large](pizza_size) pizza
+    - i want to order a [xl](pizza_size) [hawai](pizza_type) pizza
     - [medium](pizza_size) pizza
     - [xl](pizza_size)
     - [small](pizza_size)

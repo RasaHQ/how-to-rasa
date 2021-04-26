@@ -104,7 +104,7 @@ class ActionTimeDifference(Action):
         diff_seconds = dateparser.parse(str(max_t)[:19]) - dateparser.parse(str(min_t)[:19])
         diff_hours = int(diff_seconds.seconds/3600)
         
-        msg = f"There is a {diff_hours}H time difference."
+        msg = f"There is a {min(diff_hours, 24-diff_hours)}H time difference."
         dispatcher.utter_message(text=msg)
         
         return []

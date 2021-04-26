@@ -19,10 +19,8 @@ entities:
 - pizza_size
 - pizza_type
 - vegetarian
+
 slots:
-  price_confirmed:
-    type: bool
-    influence_conversation: true
   pizza_size:
     type: text
     influence_conversation: true
@@ -63,6 +61,7 @@ actions:
 - utter_submit
 - validate_fancy_pizza_form
 - validate_simple_pizza_form
+
 forms:
   simple_pizza_form:
     pizza_size:
@@ -71,6 +70,7 @@ forms:
     pizza_type:
     - type: from_entity
       entity: pizza_type
+  
   fancy_pizza_form:
     vegetarian:
     - type: from_text
