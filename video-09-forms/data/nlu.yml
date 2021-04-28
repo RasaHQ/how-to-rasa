@@ -38,6 +38,7 @@ nlu:
     - of course
     - that sounds good
     - correct
+    - /affirm
 - intent: deny
   examples: |
     - no
@@ -107,6 +108,7 @@ nlu:
     - [xl](pizza_size)
     - [small](pizza_size)
     - [s](pizza_size)
+    - [pepperoni](pizza_type)
     - give me a [mozerella](pizza_type) pizza
     - [hawaii](pizza_type) pizza
     - [smol](pizza_size)
@@ -114,6 +116,5 @@ nlu:
     - i want a [large](pizza_size) pizza
     - [mozzarella](pizza_type)
     - [hawai](pizza_type)
-    - [s](pizza_size)
     - [veggie](pizza_type)
     - [fungi](pizza_type)

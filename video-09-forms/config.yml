@@ -10,7 +10,7 @@ pipeline:
    min_ngram: 2
    max_ngram: 4
  - name: DIETClassifier
-   epochs: 40
+   epochs: 80
    constrain_similarities: true
    model_confidence: linear_norm
 

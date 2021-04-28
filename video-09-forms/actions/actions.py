@@ -8,6 +8,7 @@ from rasa_sdk.types import DomainDict
 ALLOWED_PIZZA_SIZES = ["small", "medium", "large", "extra-large", "extra large", "s", "m", "l", "xl"]
 ALLOWED_PIZZA_TYPES = ["mozzarella", "fungi", "veggie", "pepperoni", "hawaii"]
 VEGETARIAN_PIZZAS = ["mozzarella", "fungi", "veggie"]
+MEAT_PIZZAS = ["pepperoni", "hawaii"]
 
 
 class ValidateSimplePizzaForm(FormValidationAction):
@@ -54,8 +55,8 @@ class AskForVegetarianAction(Action):
     ) -> List[EventType]:
         dispatcher.utter_message(text="Would you like to order a vegetarian pizza?",
                                  buttons=[
-                                     {"name": "yes", "payload": "/affirm"},
-                                     {"name": "no", "payload": "/deny"}
+                                     {"title": "yes", "payload": "/affirm"},
+                                     {"title": "no", "payload": "/deny"}
                                  ])
         return []
 
@@ -69,9 +70,10 @@ class AskForPizzaTypeAction(Action):
     ) -> List[EventType]:
         if tracker.get_slot("vegetarian"):
             dispatcher.utter_message(text=f"What kind of pizza do you want?",
-                                     buttons=[{"name": p, "payload": p} for p in VEGETARIAN_PIZZAS])
+                                     buttons=[{"title": p, "payload": p} for p in VEGETARIAN_PIZZAS])
         else:
-            dispatcher.utter_message(text=f"What kind of pizza do you want?")
+            dispatcher.utter_message(text=f"What kind of pizza do you want?",
+                                     buttons=[{"title": p, "payload": p} for p in MEAT_PIZZAS])
         return []
 
 
@@ -91,8 +93,8 @@ class ValidateFancyPizzaForm(FormValidationAction):
             dispatcher.utter_message(text="I'll remember you prefer vegetarian.")
             return {"vegetarian": True}
         if tracker.get_intent_of_latest_message() == "deny":
-            dispatcher.utter_message(text="I'll remember that.")
-            return {"vegetarian": True}
+            dispatcher.utter_message(text="I'll remember that you don't want a vegetarian pizza.")
+            return {"vegetarian": False}
         dispatcher.utter_message(text="I didn't get that.")
         return {"vegetarian": None}
 
