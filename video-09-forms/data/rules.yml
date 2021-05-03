@@ -29,6 +29,18 @@ rules:
   - action: utter_submit
   - action: utter_pizza_slots
 
+- rule: Interruption in Pizza Form
+  condition:
+  # Condition that form is active.
+  - active_loop: simple_pizza_form
+  steps:
+  # This unhappy path handles the case of an intent `bot_challenge`.
+  - intent: bot_challenge
+  - action: utter_iamabot
+  # Return to form after handling the `bot_challenge` intent
+  - action: simple_pizza_form
+  - active_loop: simple_pizza_form
+
 - rule: Activate Fancy Pizza Form
   steps:
   - intent: buy_fancy_pizza

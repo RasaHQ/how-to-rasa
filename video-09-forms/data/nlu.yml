@@ -17,6 +17,7 @@ nlu:
     - good afternoon
     - yo
     - hello world
+    - hi there
 - intent: goodbye
   examples: |
     - cu
@@ -80,6 +81,13 @@ nlu:
     - extremly sad
     - so saad
     - so sad
+- intent: stop
+  examples: |
+    - stop
+    - nevermind
+    - please stop
+    - i want to stop
+    - stop the form
 - intent: bot_challenge
   examples: |
     - are you a bot?
@@ -118,3 +126,4 @@ nlu:
     - [hawai](pizza_type)
     - [veggie](pizza_type)
     - [fungi](pizza_type)
+    - [s](pizza_size)

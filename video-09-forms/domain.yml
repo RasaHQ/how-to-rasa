@@ -1,58 +1,37 @@
 version: '2.0'
-config:
-  store_entities_as_slots: true
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
-- greet:
-    use_entities: true
-- affirm:
-    use_entities: true
-- buy_fancy_pizza:
-    use_entities: true
-- inform:
-    use_entities: true
-- buy_pizza:
-    use_entities: true
-- goodbye:
-    use_entities: true
-- deny:
-    use_entities: true
-- mood_great:
-    use_entities: true
-- mood_unhappy:
-    use_entities: true
-- bot_challenge:
-    use_entities: true
-- request_fancy_form:
-    use_entities: true
-- request_pizza_form:
-    use_entities: true
+- buy_pizza
+- inform
+- goodbye
+- affirm
+- stop
+- greet
+- buy_fancy_pizza
+- deny
+- mood_great
+- mood_unhappy
+- bot_challenge
+- request_fancy_form
+- request_pizza_form
 entities:
 - pizza_size
 - pizza_type
 - vegetarian
 slots:
   pizza_size:
-    type: rasa.shared.core.slots.TextSlot
-    initial_value: null
-    auto_fill: true
+    type: text
     influence_conversation: true
   pizza_type:
-    type: rasa.shared.core.slots.TextSlot
-    initial_value: null
-    auto_fill: true
+    type: text
     influence_conversation: true
   vegetarian:
-    type: rasa.shared.core.slots.BooleanSlot
-    initial_value: null
-    auto_fill: true
+    type: bool
     influence_conversation: true
   requested_slot:
-    type: rasa.shared.core.slots.UnfeaturizedSlot
-    initial_value: null
-    auto_fill: true
+    type: unfeaturized
     influence_conversation: false
 responses:
   utter_greet:
@@ -72,13 +51,12 @@ responses:
   - text: I will now order a pizza for you!
   utter_pizza_slots:
   - text: I will order a {pizza_size} {pizza_type} pizza.
-  # utter_ask_pizza_type:
-  # - text: What kind of pizza would you like?
-  # utter_ask_pizza_size:
-  # - text: What size of pizza would you like?
+  utter_ask_continue:
+  - text: Are you sure you want to stop the form?
 actions:
 - action_ask_pizza_type
 - action_ask_vegetarian
+- utter_ask_continue
 - utter_goodbye
 - utter_greet
 - utter_pizza_slots
@@ -102,4 +80,3 @@ forms:
     pizza_type:
     - entity: pizza_type
       type: from_entity
-e2e_actions: []
