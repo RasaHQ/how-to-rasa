@@ -53,6 +53,10 @@ responses:
   - text: I will order a {pizza_size} {pizza_type} pizza.
   utter_ask_continue:
   - text: Are you sure you want to stop the form?
+  utter_ask_pizza_size:
+  - text: What size would you like your pizza to be? 
+  utter_ask_pizza_type:
+  - text: What kind of pizza would you like to buy?
 actions:
 - action_ask_pizza_type
 - action_ask_vegetarian
