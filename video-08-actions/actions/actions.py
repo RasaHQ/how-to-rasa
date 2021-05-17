@@ -15,7 +15,7 @@ city_db = {
     'seattle': 'US/Pacific'
 }
 
-class ActionHelloWorld(Action):
+class ActionTellTime(Action):
 
     def name(self) -> Text:
         return "action_tell_time"

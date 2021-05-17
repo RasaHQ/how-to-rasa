@@ -92,6 +92,14 @@ nlu:
     - tell me the time in [Lisbon](place)
     - what is the current time in [Berlin](place)
     - what time is it in [amsterdam](place)[amsterdam](place)
+- lookup: place
+  examples: |
+    - brussels
+    - zagreb
+    - london
+    - lisbon
+    - amsterdam
+    - seattle
 - intent: where_i_live
   examples: |
     - please remember that i live in [Amsterdam](place)?
@@ -106,11 +114,3 @@ nlu:
     - how big is the time delta with [Berlin](place)?
     - is there a time difference with [Lisbon](place)?
     - what is the time difference with [amsterdam](place)
-- lookup: place
-  examples: |
-    - brussels
-    - zagreb
-    - london
-    - lisbon
-    - amsterdam
-    - seattle
