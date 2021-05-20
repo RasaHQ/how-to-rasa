@@ -126,4 +126,6 @@ nlu:
     - [hawai](pizza_type)
     - [veggie](pizza_type)
     - [fungi](pizza_type)
-    - [s](pizza_size)
+    - i want a [large](pizza_size) pizza
+    - [vegggie](pizza_type)
+    - [veggie](pizza_type)
