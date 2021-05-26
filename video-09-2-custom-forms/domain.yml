@@ -3,17 +3,17 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
+- goodbye
+- affirm
 - greet
 - buy_pizza
 - stop
-- affirm
+- bot_challenge
 - inform
-- goodbye
 - buy_fancy_pizza
 - deny
 - mood_great
 - mood_unhappy
-- bot_challenge
 - request_fancy_form
 - request_pizza_form
 entities:
@@ -58,11 +58,11 @@ responses:
   utter_ask_pizza_type:
   - text: What kind of pizza would you like to buy?
 actions:
-- action_ask_pizza_type
 - action_ask_vegetarian
 - utter_ask_continue
 - utter_goodbye
 - utter_greet
+- utter_iamabot
 - utter_pizza_slots
 - utter_submit
 - validate_fancy_pizza_form

@@ -94,6 +94,7 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+    - by the way, are you a human?
 - intent: buy_fancy_pizza
   examples: |
     - i'd like to buy a fancy pizza
@@ -129,4 +130,3 @@ nlu:
     - [fungi](pizza_type)
     - [vegggie](pizza_type)
     - i want to buy a [large](pizza_size) pizza
-    - [pepperoni](pizza_type)

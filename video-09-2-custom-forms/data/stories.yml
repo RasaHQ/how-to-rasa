@@ -188,3 +188,27 @@ stories:
   - active_loop: null
   - action: utter_submit
   - action: utter_pizza_slots
+
+- story: interactive_story_5
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: buy_pizza
+  - action: simple_pizza_form
+  - active_loop: simple_pizza_form
+  - slot_was_set:
+    - requested_slot: pizza_size
+  - intent: bot_challenge
+  - action: utter_iamabot
+  - action: simple_pizza_form
+  - slot_was_set:
+    - requested_slot: pizza_size
+  - intent: stop
+  - action: utter_ask_continue
+  - intent: affirm
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - intent: goodbye
+  - action: utter_goodbye
