@@ -1,37 +1,60 @@
 version: '2.0'
+config:
+  store_entities_as_slots: true
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
-- goodbye
-- affirm
-- greet
-- buy_pizza
-- stop
-- bot_challenge
-- inform
-- buy_fancy_pizza
-- deny
-- mood_great
-- mood_unhappy
-- request_fancy_form
-- request_pizza_form
+- goodbye:
+    use_entities: true
+- affirm:
+    use_entities: true
+- greet:
+    use_entities: true
+- buy_pizza:
+    use_entities: true
+- stop:
+    use_entities: true
+- bot_challenge:
+    use_entities: true
+- inform:
+    use_entities: true
+- buy_fancy_pizza:
+    use_entities: true
+- deny:
+    use_entities: true
+- mood_great:
+    use_entities: true
+- mood_unhappy:
+    use_entities: true
+- request_fancy_form:
+    use_entities: true
+- request_pizza_form:
+    use_entities: true
 entities:
 - pizza_size
 - pizza_type
 - vegetarian
 slots:
   pizza_size:
-    type: text
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
     influence_conversation: true
   pizza_type:
-    type: text
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
     influence_conversation: true
   vegetarian:
-    type: bool
+    type: rasa.shared.core.slots.BooleanSlot
+    initial_value: null
+    auto_fill: true
     influence_conversation: true
   requested_slot:
-    type: unfeaturized
+    type: rasa.shared.core.slots.UnfeaturizedSlot
+    initial_value: null
+    auto_fill: true
     influence_conversation: false
 responses:
   utter_greet:
@@ -59,6 +82,7 @@ responses:
   - text: What kind of pizza would you like to buy?
 actions:
 - action_ask_vegetarian
+- action_ask_pizza_type
 - utter_ask_continue
 - utter_goodbye
 - utter_greet
@@ -78,11 +102,12 @@ forms:
         type: from_entity
   fancy_pizza_form:
     required_slots:
-      vegetarian:
-      - type: from_text
       pizza_size:
       - entity: pizza_size
         type: from_entity
       pizza_type:
       - entity: pizza_type
         type: from_entity
+      vegetarian:
+      - type: from_text
+e2e_actions: []

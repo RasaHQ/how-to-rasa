@@ -132,3 +132,6 @@ dmypy.json
 */story_graph.dot
 *.ipynb
 .idea
+*.db
+*.db-shm
+*.db-wal
