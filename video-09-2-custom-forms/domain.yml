@@ -37,25 +37,23 @@ entities:
 - vegetarian
 slots:
   pizza_size:
-    type: rasa.shared.core.slots.TextSlot
-    initial_value: null
-    auto_fill: true
+    type: text
     influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: pizza_size
   pizza_type:
-    type: rasa.shared.core.slots.TextSlot
-    initial_value: null
-    auto_fill: true
+    type: text
     influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: pizza_type
   vegetarian:
     type: rasa.shared.core.slots.BooleanSlot
-    initial_value: null
-    auto_fill: true
     influence_conversation: true
-  requested_slot:
-    type: rasa.shared.core.slots.UnfeaturizedSlot
-    initial_value: null
-    auto_fill: true
-    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: pizza_type
 responses:
   utter_greet:
   - text: Hey! How are you?

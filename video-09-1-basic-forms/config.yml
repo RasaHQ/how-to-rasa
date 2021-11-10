@@ -12,7 +12,7 @@ pipeline:
  - name: DIETClassifier
    epochs: 100
    constrain_similarities: true
-   model_confidence: linear_norm
+   model_confidence: softmax
 
 policies:
  - name: MemoizationPolicy

@@ -9,27 +9,27 @@ intents:
 - goodbye
 - affirm
 - stop
-- buy_fancy_pizza
 - deny
 - mood_great
 - mood_unhappy
 - bot_challenge
-- request_fancy_form
 - request_pizza_form
 entities:
 - pizza_size
 - pizza_type
-- vegetarian
 slots:
   pizza_size:
     type: text
     influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: pizza_size
   pizza_type:
     type: text
     influence_conversation: true
-  requested_slot:
-    type: unfeaturized
-    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: pizza_type
 responses:
   utter_greet:
   - text: Hey! How are you?
@@ -61,24 +61,9 @@ actions:
 - utter_greet
 - utter_pizza_slots
 - utter_submit
-- validate_fancy_pizza_form
 - validate_simple_pizza_form
 forms:
   simple_pizza_form:
     required_slots:
-      pizza_size:
-      - entity: pizza_size
-        type: from_entity
-      pizza_type:
-      - entity: pizza_type
-        type: from_entity
-  fancy_pizza_form:
-    required_slots:
-      vegetarian:
-      - type: from_text
-      pizza_size:
-      - entity: pizza_size
-        type: from_entity
-      pizza_type:
-      - entity: pizza_type
-        type: from_entity
+      - pizza_size
+      - pizza_type

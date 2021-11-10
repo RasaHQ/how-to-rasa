@@ -19,6 +19,9 @@ slots:
   location:
     type: text
     influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: place
 responses:
   utter_greet:
   - text: Hey! How are you?
