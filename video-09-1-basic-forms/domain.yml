@@ -30,6 +30,11 @@ slots:
     mappings:
     - type: from_entity
       entity: pizza_type
+forms:
+  simple_pizza_form:
+    required_slots:
+      - pizza_size
+      - pizza_type
 responses:
   utter_greet:
   - text: Hey! How are you?
@@ -61,8 +66,3 @@ actions:
 - utter_pizza_slots
 - utter_submit
 - validate_simple_pizza_form
-forms:
-  simple_pizza_form:
-    required_slots:
-      - pizza_size
-      - pizza_type
