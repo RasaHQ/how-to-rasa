@@ -31,6 +31,8 @@ nlu:
     - bye bye
     - see you later
     - thanks, goodbye
+    - bye now
+    - thanks, bye!
 - intent: affirm
   examples: |
     - yes
@@ -130,3 +132,6 @@ nlu:
     - [fungi](pizza_type)
     - [vegggie](pizza_type)
     - i want to buy a [large](pizza_size) pizza
+    - [large](pizza_size)
+    - [large](pizza_size)
+    - [pepperoni](pizza_type)

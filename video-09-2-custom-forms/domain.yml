@@ -1,61 +1,48 @@
 version: '2.0'
-config:
-  store_entities_as_slots: true
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
-- goodbye:
-    use_entities: true
-- affirm:
-    use_entities: true
-- greet:
-    use_entities: true
-- buy_pizza:
-    use_entities: true
-- stop:
-    use_entities: true
-- bot_challenge:
-    use_entities: true
-- inform:
-    use_entities: true
-- buy_fancy_pizza:
-    use_entities: true
-- deny:
-    use_entities: true
-- mood_great:
-    use_entities: true
-- mood_unhappy:
-    use_entities: true
-- request_fancy_form:
-    use_entities: true
-- request_pizza_form:
-    use_entities: true
+- buy_pizza
+- greet
+- goodbye
+- inform
+- affirm
+- stop
+- bot_challenge
+- buy_fancy_pizza
+- deny
+- mood_great
+- mood_unhappy
+- request_fancy_form
+- request_pizza_form
 entities:
 - pizza_size
 - pizza_type
 - vegetarian
 slots:
   pizza_size:
-    type: rasa.shared.core.slots.TextSlot
-    initial_value: null
-    auto_fill: true
+    type: text
     influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: pizza_size
   pizza_type:
-    type: rasa.shared.core.slots.TextSlot
-    initial_value: null
-    auto_fill: true
+    type: text
     influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: pizza_type
   vegetarian:
-    type: rasa.shared.core.slots.BooleanSlot
-    initial_value: null
-    auto_fill: true
+    type: bool
     influence_conversation: true
-  requested_slot:
-    type: rasa.shared.core.slots.UnfeaturizedSlot
-    initial_value: null
-    auto_fill: true
-    influence_conversation: false
+    mappings:
+    - type: from_intent
+      value: true
+      intent: affirm
+    - type: from_intent
+      value: false
+      intent: deny
 responses:
   utter_greet:
   - text: Hey! How are you?
@@ -81,8 +68,8 @@ responses:
   utter_ask_pizza_type:
   - text: What kind of pizza would you like to buy?
 actions:
-- action_ask_vegetarian
 - action_ask_pizza_type
+- action_ask_vegetarian
 - utter_ask_continue
 - utter_goodbye
 - utter_greet
@@ -94,20 +81,10 @@ actions:
 forms:
   simple_pizza_form:
     required_slots:
-      pizza_size:
-      - entity: pizza_size
-        type: from_entity
-      pizza_type:
-      - entity: pizza_type
-        type: from_entity
+    - pizza_size
+    - pizza_type
   fancy_pizza_form:
     required_slots:
-      pizza_size:
-      - entity: pizza_size
-        type: from_entity
-      pizza_type:
-      - entity: pizza_type
-        type: from_entity
-      vegetarian:
-      - type: from_text
-e2e_actions: []
+    - vegetarian
+    - pizza_size
+    - pizza_type
