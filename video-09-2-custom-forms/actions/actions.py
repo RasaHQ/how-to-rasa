@@ -109,7 +109,9 @@ class ValidateFancyPizzaForm(FormValidationAction):
     ) -> Dict[Text, Any]:
         """Validate `pizza_size` value."""
         if tracker.get_intent_of_latest_message() == "affirm":
-            dispatcher.utter_message(text="I'll remember you prefer vegetarian.")
+            dispatcher.utter_message(
+                text="I'll remember you prefer vegetarian."
+            )
             return {"vegetarian": True}
         if tracker.get_intent_of_latest_message() == "deny":
             dispatcher.utter_message(
