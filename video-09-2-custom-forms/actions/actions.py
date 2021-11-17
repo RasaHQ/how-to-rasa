@@ -6,7 +6,17 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
 
 
-ALLOWED_PIZZA_SIZES = ["small", "medium", "large", "extra-large", "extra large", "s", "m", "l", "xl"]
+ALLOWED_PIZZA_SIZES = [
+    "small",
+    "medium",
+    "large",
+    "extra-large",
+    "extra large",
+    "s",
+    "m",
+    "l",
+    "xl",
+]
 ALLOWED_PIZZA_TYPES = ["mozzarella", "fungi", "veggie", "pepperoni", "hawaii"]
 VEGETARIAN_PIZZAS = ["mozzarella", "fungi", "veggie"]
 MEAT_PIZZAS = ["pepperoni", "hawaii"]
@@ -41,7 +51,9 @@ class ValidateSimplePizzaForm(FormValidationAction):
         """Validate `pizza_type` value."""
 
         if slot_value not in ALLOWED_PIZZA_TYPES:
-            dispatcher.utter_message(text=f"I don't recognize that pizza. We serve {'/'.join(ALLOWED_PIZZA_TYPES)}.")
+            dispatcher.utter_message(
+                text=f"I don't recognize that pizza. We serve {'/'.join(ALLOWED_PIZZA_TYPES)}."
+            )
             return {"pizza_type": None}
         dispatcher.utter_message(text=f"OK! You want to have a {slot_value} pizza.")
         return {"pizza_type": slot_value}
@@ -52,13 +64,15 @@ class AskForVegetarianAction(Action):
         return "action_ask_vegetarian"
 
     def run(
-            self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict
+        self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict
     ) -> List[EventType]:
-        dispatcher.utter_message(text="Would you like to order a vegetarian pizza?",
-                                 buttons=[
-                                     {"title": "yes", "payload": "/affirm"},
-                                     {"title": "no", "payload": "/deny"}
-                                 ])
+        dispatcher.utter_message(
+            text="Would you like to order a vegetarian pizza?",
+            buttons=[
+                {"title": "yes", "payload": "/affirm"},
+                {"title": "no", "payload": "/deny"},
+            ],
+        )
         return []
 
 
@@ -70,11 +84,15 @@ class AskForPizzaTypeAction(Action):
         self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict
     ) -> List[EventType]:
         if tracker.get_slot("vegetarian"):
-            dispatcher.utter_message(text=f"What kind of pizza do you want?",
-                                     buttons=[{"title": p, "payload": p} for p in VEGETARIAN_PIZZAS])
+            dispatcher.utter_message(
+                text=f"What kind of pizza do you want?",
+                buttons=[{"title": p, "payload": p} for p in VEGETARIAN_PIZZAS],
+            )
         else:
-            dispatcher.utter_message(text=f"What kind of pizza do you want?",
-                                     buttons=[{"title": p, "payload": p} for p in MEAT_PIZZAS])
+            dispatcher.utter_message(
+                text=f"What kind of pizza do you want?",
+                buttons=[{"title": p, "payload": p} for p in MEAT_PIZZAS],
+            )
         return []
 
 
@@ -83,18 +101,20 @@ class ValidateFancyPizzaForm(FormValidationAction):
         return "validate_fancy_pizza_form"
 
     def validate_vegetarian(
-            self,
-            slot_value: Any,
-            dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: DomainDict,
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
     ) -> Dict[Text, Any]:
         """Validate `pizza_size` value."""
         if tracker.get_intent_of_latest_message() == "affirm":
             dispatcher.utter_message(text="I'll remember you prefer vegetarian.")
             return {"vegetarian": True}
         if tracker.get_intent_of_latest_message() == "deny":
-            dispatcher.utter_message(text="I'll remember that you don't want a vegetarian pizza.")
+            dispatcher.utter_message(
+                text="I'll remember that you don't want a vegetarian pizza."
+            )
             return {"vegetarian": False}
         dispatcher.utter_message(text="I didn't get that.")
         return {"vegetarian": None}
@@ -124,10 +144,14 @@ class ValidateFancyPizzaForm(FormValidationAction):
         """Validate `pizza_type` value."""
 
         if slot_value not in ALLOWED_PIZZA_TYPES:
-            dispatcher.utter_message(text=f"I don't recognize that pizza. We serve {'/'.join(ALLOWED_PIZZA_TYPES)}.")
+            dispatcher.utter_message(
+                text=f"I don't recognize that pizza. We serve {'/'.join(ALLOWED_PIZZA_TYPES)}."
+            )
             return {"pizza_type": None}
         if not slot_value:
-            dispatcher.utter_message(text=f"I don't recognize that pizza. We serve {'/'.join(ALLOWED_PIZZA_TYPES)}.")
+            dispatcher.utter_message(
+                text=f"I don't recognize that pizza. We serve {'/'.join(ALLOWED_PIZZA_TYPES)}."
+            )
             return {"pizza_type": None}
         dispatcher.utter_message(text=f"OK! You want to have a {slot_value} pizza.")
         return {"pizza_type": slot_value}
