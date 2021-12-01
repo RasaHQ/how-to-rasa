@@ -19,7 +19,6 @@ intents:
 entities:
 - pizza_size
 - pizza_type
-- vegetarian
 forms:
   simple_pizza_form:
     required_slots:
@@ -37,6 +36,9 @@ slots:
     mappings:
     - type: from_entity
       entity: pizza_size
+      conditions:
+      - active_loop: pizza_form
+        requested_slot: pizza_size
   pizza_type:
     type: text
     influence_conversation: true
